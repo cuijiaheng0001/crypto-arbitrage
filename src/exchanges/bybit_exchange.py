@@ -47,7 +47,7 @@ class BybitExchange(BaseExchange):
     
     async def disconnect(self):
         """Close connection to Bybit"""
-        await self.exchange.close()
+        # ccxt doesn't have close method for spot trading
         logger.info("Disconnected from Bybit")
     
     async def get_balance(self, asset: str) -> Decimal:

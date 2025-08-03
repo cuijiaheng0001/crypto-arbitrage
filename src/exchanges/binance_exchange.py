@@ -27,10 +27,14 @@ class BinanceExchange(BaseExchange):
         if testnet:
             exchange_config['urls'] = {
                 'api': {
+                    'fapiPublic': 'https://testnet.binance.vision/fapi',
+                    'fapiPrivate': 'https://testnet.binance.vision/fapi',
                     'public': 'https://testnet.binance.vision/api',
                     'private': 'https://testnet.binance.vision/api',
+                    'sapi': 'https://testnet.binance.vision/sapi',
                 }
             }
+            exchange_config['hostname'] = 'testnet.binance.vision'
         
         self.exchange = ccxt.binance(exchange_config)
         
@@ -45,7 +49,7 @@ class BinanceExchange(BaseExchange):
     
     async def disconnect(self):
         """Close connection to Binance"""
-        await self.exchange.close()
+        # ccxt doesn't have close method for spot trading
         logger.info("Disconnected from Binance")
     
     async def get_balance(self, asset: str) -> Decimal:

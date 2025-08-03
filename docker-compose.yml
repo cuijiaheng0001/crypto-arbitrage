@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  crypto-arbitrage:
+    build: .
+    container_name: crypto-arbitrage-bot
+    restart: always
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - ./.env:/app/.env:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - arbitrage-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os; exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Redis用于缓存价格数据（可选）
+  redis:
+    image: redis:alpine
+    container_name: crypto-arbitrage-redis
+    restart: always
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    networks:
+      - arbitrage-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  arbitrage-network:
+    driver: bridge
+
+volumes:
+  redis-data:
