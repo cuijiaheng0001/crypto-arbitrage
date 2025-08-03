@@ -1,0 +1,52 @@
+# 环境变量和配置
+.env
+.env.local
+.env.*.local
+exchange_config.py
+
+# API 密钥和凭证
+**/api_keys/
+**/credentials/
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+
+# 日志文件
+logs/
+*.log
+
+# 数据库
+*.db
+*.sqlite
+*.sqlite3
+
+# 测试和临时文件
+.pytest_cache/
+.coverage
+htmlcov/
+*.tmp
+*.temp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# MacOS
+.DS_Store
+
+# 交易数据
+data/
+trading_history/
+backtest_results/
