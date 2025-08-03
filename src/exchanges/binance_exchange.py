@@ -25,13 +25,12 @@ class BinanceExchange(BaseExchange):
         }
         
         if testnet:
+            # 使用 Binance Spot 测试网
+            logger.info("Using Binance Spot Testnet")
             exchange_config['urls'] = {
                 'api': {
-                    'fapiPublic': 'https://testnet.binance.vision/fapi',
-                    'fapiPrivate': 'https://testnet.binance.vision/fapi',
-                    'public': 'https://testnet.binance.vision/api',
-                    'private': 'https://testnet.binance.vision/api',
-                    'sapi': 'https://testnet.binance.vision/sapi',
+                    'public': 'https://testnet.binance.vision/api/v3',
+                    'private': 'https://testnet.binance.vision/api/v3',
                 }
             }
             exchange_config['hostname'] = 'testnet.binance.vision'
