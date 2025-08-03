@@ -1,0 +1,3 @@
+[submodule "barbotine-arbitrage-bot"]
+	path = barbotine-arbitrage-bot
+	url = https://github.com/nelso0/barbotine-arbitrage-bot.git
